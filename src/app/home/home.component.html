@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-header">
+            <form [formGroup]="DataFormGroup">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="">Timer, ms</label>
+                            <input type="number" formControlName="timer" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="">Array Size</label>
+                            <input type="number" formControlName="ArraySize" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="">Additional array ids</label>
+                            <input type="text"  [attr.disabled]="true"
+                             [(ngModel)]="IdsAdditionalArray" name="AdditionalArrayIds"  [ngModelOptions]="{standalone: true}" class="form-control" />
+                            <!-- <input type="text"  [attr.disabled]="true" formControlName="AdditionalArrayIds" class="form-control" /> -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>int</th>
+                        <th>float</th>
+                        <th>color</th>
+                        <th>child</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border" *ngFor="let data of arrayFields;">
+                        <td class="pt-5">{{data.id}}</td>
+                        <td class="pt-5">{{data.int}}</td>
+                        <td class="pt-5">{{data.float}}</td>
+                        <td class="pt-5">
+                            <span
+                                [ngClass]="{'red': data.color === 'red', 'yellow' : data.color === 'yellow' , 'blue': data.color === 'blue'}">{{data.color}}</span>
+                        </td>
+                        <td>
+                            <div>
+                                <table class="table border table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Color</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ data.child.id}}</td>
+                                            <td>
+                                                <span
+                                                [ngClass]="{'red': data.child.color === 'red', 'yellow' : data.child.color === 'yellow' , 'blue': data.child.color === 'blue'}">{{data.child.color}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
